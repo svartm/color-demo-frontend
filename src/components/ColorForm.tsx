@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { backendStub } from '../utils/backendStub';
+import { checkColor } from '../utils/backendRequests';
 
 export const ColorForm = () => {
 	const [inputValue, setInputValue] = useState('');
@@ -9,9 +9,9 @@ export const ColorForm = () => {
 	
 	const handleInput = (e: Event) => {
 		const value = (e.target as HTMLInputElement).value;
-    const formattedValue = value.startsWith('#') ? value : `#${value}`;
+		const formattedValue = value.startsWith('#') ? value : `#${value}`;
 		setInputValue(formattedValue);
-    const isValidColorCode = /^#?([0-9A-Fa-f]{6})$/.test(formattedValue);
+		const isValidColorCode = /^#?([0-9A-Fa-f]{6})$/.test(formattedValue);
 		setIsColor(isValidColorCode);
 	};
 
@@ -19,8 +19,8 @@ export const ColorForm = () => {
 		e.preventDefault();
 		if (isColor) {
 			setIsLoading(true);
-			const response = await backendStub(inputValue);
-			setMessage(response);
+			const backendMessage = await checkColor(inputValue, '#00ff00');
+			setMessage(backendMessage.message);
 			setIsLoading(false);
 		} else {
 			setMessage('Invalid color code.');
@@ -33,14 +33,14 @@ export const ColorForm = () => {
 		<form onSubmit={handleSubmit}>
 			<input
 				type="text"
-        value={inputValue}
-        onInput={handleInput}
-        placeholder="#000000"
-      />
+				value={inputValue}
+				onInput={handleInput}
+				placeholder="#000000"
+			/>
 			<button type="submit" style={buttonStyle}>Submit</button>
 			<div class='message'>
 			{isLoading ? <p></p> : <p>{message}</p>}
 			</div>
-    </form>
+		</form>
 	);
 };

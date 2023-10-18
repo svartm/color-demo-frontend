@@ -7,9 +7,7 @@ import './style.css';
 export function App() {
 	return (
 		<div>
-			<ColorBlock
-				style='background-color: #00ff00' 
-			/>
+			<ColorBlock />
 			<h1>Guess the color!</h1>
 			<ColorForm />
 		</div>
