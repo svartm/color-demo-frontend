@@ -11,7 +11,7 @@ export const getColor = async () => {
 
 export const checkColor = async (guess: string, answer: string) => {
     try {
-        const response = await fetch('${BACKEND_URL}/checkcolor', {
+        const response = await fetch(`http://127.0.0.1:5000/checkcolor`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
