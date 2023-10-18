@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import { checkColor } from '../utils/backendRequests';
 
-export const ColorForm = () => {
+export const ColorForm = (props) => {
 	const [inputValue, setInputValue] = useState('');
 	const [message, setMessage] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ export const ColorForm = () => {
 		e.preventDefault();
 		if (isColor) {
 			setIsLoading(true);
-			const backendMessage = await checkColor(inputValue, '#00ff00');
+			const backendMessage = await checkColor(inputValue, props.color);
 			setMessage(backendMessage.message);
 			setIsLoading(false);
 		} else {
