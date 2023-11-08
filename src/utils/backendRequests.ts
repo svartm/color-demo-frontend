@@ -1,5 +1,7 @@
+const backendUrl = 'https://svartm.pythonanywhere.com';
+
 export const fetchColor = async () => {
-    const response = await fetch('http://127.0.0.1:5000/getcolor', {
+    const response = await fetch(`${backendUrl}/getcolor`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -11,7 +13,7 @@ export const fetchColor = async () => {
 
 export const checkColor = async (guess: string, answer: string) => {
     try {
-        const response = await fetch(`http://127.0.0.1:5000/checkcolor`, {
+        const response = await fetch(`${backendUrl}/checkcolor`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
