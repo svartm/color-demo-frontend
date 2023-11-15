@@ -1,4 +1,4 @@
-const backendUrl = 'https://svartm.pythonanywhere.com';
+const backendUrl = 'https://oexi.eu.pythonanywhere.com';
 
 export const fetchColor = async () => {
     const response = await fetch(`${backendUrl}/getcolor`, {
